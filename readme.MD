@@ -44,5 +44,5 @@ Install the dependencies using `pip install -r requirements.txt`
 
 Copy `env.example` to `.env` and populate your variables in this file generated while creating the service account. The .env is included in the .gitignore to ensure it does not accidentally get checked into a git repo.
 
-To prompt for username: `python main.py` \
+To prompt for username: `python main.py`. \
 To pass a username via CLI arguments: `python main.py -u {username}` or `python main.py --username {username}`.
