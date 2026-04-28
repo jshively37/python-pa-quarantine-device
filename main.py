@@ -1,7 +1,5 @@
 import json
 import os
-from urllib import response
-from wsgiref import headers
 import requests
 
 from dotenv import load_dotenv
