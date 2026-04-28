@@ -1,3 +1,4 @@
+import argparse
 import json
 import os
 import requests
@@ -70,9 +71,19 @@ def add_device_to_quarantine(device_name):
 
 
 if __name__ == "__main__":
-    create_token()
-    username = input("Enter the username to search: ")
     device_names = []
+
+    #Retrieve the username from command line arguments or prompt the user for input
+    parser = argparse.ArgumentParser(description="Quarantine devices for a given username")
+    parser.add_argument("-u", "--username", help="The username to search for devices", required=False)
+    args = parser.parse_args()
+    username = args.username
+    if not username:
+        username = input("Enter the username to search: ")
+
+    create_token()
+
+    # Get the unique devices for the specified username and add them to quarantine
     devices = get_unique_devices(username)
     for device in devices["data"]:
         device_names.append(device["device_name"])
