@@ -1,7 +1,8 @@
 # Overview
-This Python script walks through programmatically how to add a user's device to the quarantine list in Strata Cloud Manager.
 
-The username can be sent via CLI or entered interactively.
+Python script that will add devices to the Strata Cloud Manager's quarantine list.
+
+You can pass the username via CLI arguments or be prompted for the username, that username will be used retrieve the user’s devices from the Insight API, and finally those devices are added to the quarantine list.
 
 
 ## Disclaimer
@@ -16,6 +17,7 @@ By using this software, you agree that:
 Use at your own discretion.
 
 ## Limitations:
+
 * Limited error checking.
 
 
