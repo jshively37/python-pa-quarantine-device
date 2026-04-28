@@ -37,7 +37,7 @@ def create_token():
     HEADERS.update({"Authorization": f'Bearer {token["access_token"]}'})
 
 
-def get_unique_devices():
+def get_unique_devices(username):
     url = f"{BASE_API_URL}/insights/v3.0/resource/query/users/agent/unique_device_connections_list"
     payload = json.dumps(
         {
@@ -47,7 +47,8 @@ def get_unique_devices():
                         "property": "platform_type",
                         "operator": "equals",
                         "values": ["prisma_access"],
-                    }
+                    },
+                    {"operator": "in", "property": "username", "values": [username]},
                 ]
             }
         }
@@ -64,21 +65,17 @@ def get_unique_devices():
 
 def add_device_to_quarantine(device_id):
     url = f"{BASE_API_URL}/config/objects/v1/quarantined-devices"
-    payload = json.dumps(
-        {
-            "host_id": device_id
-        }
-    )
+    payload = json.dumps({"host_id": device_id})
     requests.request("POST", url, headers=HEADERS, data=payload)
+
 
 if __name__ == "__main__":
     create_token()
     username = input("Enter the username to search: ")
     device_names = []
-    devices = get_unique_devices()
+    devices = get_unique_devices(username)
     for device in devices["data"]:
-        if device["username"] == username:
-            device_names.append(device["device_name"])
+        device_names.append(device["device_name"])
     if not device_names:
         print(f"No devices found for user {username}")
     else:
