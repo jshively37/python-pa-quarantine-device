@@ -3,6 +3,7 @@ This Python script walks through programmatically how to add a user's device to 
 
 The username can be sent via CLI or entered interactively.
 
+
 ## Disclaimer
 
 This project is provided as-is, without warranty of any kind, express or implied. No support, maintenance, bug fixes, or updates are offered or implied.
@@ -16,7 +17,7 @@ Use at your own discretion.
 
 ## Limitations:
 * Limited error checking.
-* Currently prompting for username. Will add in the ability to pass this via CLI arguments.
+
 
 ## Creating a service account in Prisma Access
 
