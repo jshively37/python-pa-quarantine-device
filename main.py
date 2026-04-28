@@ -63,9 +63,9 @@ def get_unique_devices(username):
         print(f"An error occurred: {err}")
 
 
-def add_device_to_quarantine(device_id):
+def add_device_to_quarantine(device_name):
     url = f"{BASE_API_URL}/config/objects/v1/quarantined-devices"
-    payload = json.dumps({"host_id": device_id})
+    payload = json.dumps({"host_id": device_name})
     requests.request("POST", url, headers=HEADERS, data=payload)
 
 
