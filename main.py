@@ -73,9 +73,13 @@ def add_device_to_quarantine(device_name):
 if __name__ == "__main__":
     device_names = []
 
-    #Retrieve the username from command line arguments or prompt the user for input
-    parser = argparse.ArgumentParser(description="Quarantine devices for a given username")
-    parser.add_argument("-u", "--username", help="The username to search for devices", required=False)
+    # Retrieve the username from command line arguments or prompt the user for input
+    parser = argparse.ArgumentParser(
+        description="Quarantine devices for a given username"
+    )
+    parser.add_argument(
+        "-u", "--username", help="The username to search for devices", required=False
+    )
     args = parser.parse_args()
     username = args.username
     if not username:
