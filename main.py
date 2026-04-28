@@ -86,7 +86,7 @@ if __name__ == "__main__":
     create_token()
 
     # Get the unique devices for the specified username and add them to quarantine
-    message = (f"Retrieving devices for user {username}")
+    message = (f"Retrieving devices for {username}")
     print(message)
     print("-" * len(message))
     devices = get_unique_devices(username)
