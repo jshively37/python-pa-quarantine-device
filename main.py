@@ -64,12 +64,26 @@ def get_unique_devices():
         print(f"An error occurred: {err}")
 
 
+def add_device_to_quarantine(device_id):
+    url = f"{BASE_API_URL}/config/objects/v1/quarantined-devices"
+    payload = json.dumps(
+        {
+            "host_id": device_id
+        }
+    )
+    requests.request("POST", url, headers=HEADERS, data=payload)
+
 if __name__ == "__main__":
     create_token()
-    username = "jshively"
+    username = input("Enter the username to search: ")
     device_names = []
     devices = get_unique_devices()
     for device in devices["data"]:
         if device["username"] == username:
             device_names.append(device["device_name"])
-    print(device_names)
+    if not device_names:
+        print(f"No devices found for user {username}")
+    else:
+        for device in device_names:
+            print(f"Adding {device} to quarantine")
+            add_device_to_quarantine(device)
