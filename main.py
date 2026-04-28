@@ -58,8 +58,6 @@ def get_unique_devices(username):
         response = requests.request("POST", url, headers=HEADERS, data=payload)
         response.raise_for_status()
         return response.json()
-    except requests.exceptions.HTTPError as err:
-        print(f"HTTP error occurred: {err}")
     except Exception as err:
         print(f"An error occurred: {err}")
 
@@ -88,6 +86,9 @@ if __name__ == "__main__":
     create_token()
 
     # Get the unique devices for the specified username and add them to quarantine
+    message = (f"Retrieving devices for user {username}")
+    print(message)
+    print("-" * len(message))
     devices = get_unique_devices(username)
     for device in devices["data"]:
         device_names.append(device["device_name"])
